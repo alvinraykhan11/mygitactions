@@ -1,17 +1,15 @@
-name: Super-Linter
+name: Run Unit Tests
+
 on: push
 
 jobs:
- super-lint:
- name: Lint Code base
- runs-on: windows-latest
- steps:
- -name: Checkout code
-  uses: actions/checkout@v2
-  
-  -name: Run Super-Linter
-   uses: github/super-linter@v3
-   
-   env:
-       DEFAULT_BRANCH: main
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  test:
+    runs-on: windows-latest
+    name: Learn Test Application
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Golang test
+        run: | 
+          cd go
+          go test .
